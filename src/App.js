@@ -88,7 +88,20 @@ const projectsList = [
 ]
 
 class App extends Component {
+  state = {
+    activeTabId: tabsList[0].tabId,
+  }
+
+  getFilteredProjects = () => {
+    const {activeTabId} = this.state
+    const filteredProjects = projectsList.filter(
+      eachProjectDetails => eachProjectDetails.category === activeTabId,
+    )
+    return filteredProjects
+  }
+
   render() {
+    const filteredProjects = this.getFilteredProjects()
     return (
       <div className="app-container">
         <Header />
